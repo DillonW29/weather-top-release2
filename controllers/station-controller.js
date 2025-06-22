@@ -22,7 +22,7 @@ export const stationController = {
     }
     const reports=reportStore.getReportsByStationId(station.id);
     for (const report of reports) {
-      report.iconCode = iconMap[report.code] || "01d"; // assign icon to each report
+      report.iconCode = iconMap[report.code] || "01d"; 
     }
     let minTemp = null, maxTemp = null;
     let minWind = null, maxWind = null;

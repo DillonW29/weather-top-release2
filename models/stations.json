@@ -1,12 +1,6 @@
 {
   "file": "./models/stations.json",
   "stations": [
-    {
-      "name": "Cork",
-      "latitude": "20",
-      "longitude": "50",
-      "_id": "5f1e02b5-d5c1-4e3d-af05-02fd93d2c9c1",
-      "userId": "921a6c5f-8822-491d-8d61-ccfab03aaf02"
-    }
+  
   ]
 }
