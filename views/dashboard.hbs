@@ -1,0 +1,47 @@
+{{> menu active="dashboard" user=user}}
+
+<section class="section">
+  <div class="container">
+    <h1 class="title">Welcome, {{user.firstName}}!</h1>
+
+    <p>This is your dashboard. You can add and view your stations here.</p>
+    <h2 class="subtitle">Add a New Station</h2>
+    <form action="/dashboard/addstation" method="POST" class="box">
+      <div class="field">
+        <label class="label">Name</label>
+        <div class="control">
+          <input class="input" type="text" name="name" placeholder="Station Name" required>
+        </div>
+      </div>
+
+      <div class="field">
+        <label class="label">Latitude</label>
+        <div class="control">
+          <input class="input" type="number" name="latitude" step="0.01" required>
+        </div>
+      </div>
+
+      <div class="field">
+        <label class="label">Longitude</label>
+        <div class="control">
+          <input class="input" type="number" name="longitude" step="0.01" required>
+        </div>
+      </div>
+
+      <button class="button is-primary" type="submit">Add Station</button>
+    </form>
+    <h2 class="subtitle">Your Stations</h2>
+    {{#if stations.length}}
+      <ul>
+        {{#each stations}}
+          <li>
+            <strong>{{name}}</strong> ({{latitude}}, {{longitude}})
+            - <a href="/station/{{id}}">View Reports</a>
+          </li>
+        {{/each}}
+      </ul>
+    {{else}}
+      <p>You haven't added any stations yet.</p>
+    {{/if}}
+  </div>
+</section>

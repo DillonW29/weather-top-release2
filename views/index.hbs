@@ -1,0 +1,12 @@
+{{> menu active="dashboard" user=user}}
+
+<section class="section">
+  <div class="container has-text-centered">
+    <h1 class="title">Welcome to WeatherTop!</h1>
+    {{#if user}}
+      <p>Hello, {{user.firstName}}! Go to your <a href="/dashboard">dashboard</a>.</p>
+    {{else}}
+      <p><a href="/signup">Sign Up</a> or <a href="/login">Log In</a> to get started.</p>
+    {{/if}}
+  </div>
+</section>

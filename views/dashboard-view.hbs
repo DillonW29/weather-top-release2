@@ -1,12 +1,18 @@
 {{> menu active="dashboard"}}
 
-<section class="box has-text-centered">
-  <h3 class="is-3 title">
-    Main Dashboard
-  </h3>
-  <div class="section">
-    <p>
-      This is the main dashboard view
-    </p>
-  </div>
-</section>
+<<h1>Welcome, {{user.firstName}}</h1>
+
+<form action="/dashboard/addstation" method="POST">
+  <input name="name" placeholder="Station Name" required />
+  <input name="latitude" placeholder="Latitude" step="0.01" required />
+  <input name="longitude" placeholder="Longitude" step="0.01" required />
+  <button type="submit">Add Station</button>
+</form>
+
+<ul>
+  {{#each stations}}
+    <li>{{name}} ({{latitude}}, {{longitude}})</li>
+  {{else}}
+    <li>No stations yet.</li>
+  {{/each}}
+</ul>
