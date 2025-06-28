@@ -2,7 +2,8 @@ import userStore from "../models/user-store.js";
 
 export const accountsController = {
   index(request, response) {
-    response.render("index"); // your homepage
+    const user = accountsController.getCurrentUser(request);
+    response.render("index",{user:user}); 
   },
 
   showSignup(request, response) {

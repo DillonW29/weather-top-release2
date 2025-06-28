@@ -1,0 +1,84 @@
+{
+  "reports": [
+    {
+      "id": "4aa3ef9e-79f2-4f3c-8195-be383a6a151a",
+      "code": "800",
+      "temp": 11,
+      "windSpeed": 22,
+      "windDirection": 89,
+      "pressure": 1000,
+      "timestamp": "2025-06-28T12:25:04.011Z",
+      "stationId": "5541784a-fd52-4dbc-b4f0-45244e2091cb"
+    },
+    {
+      "id": "93d403c1-de31-4d9f-a4b7-067e8452a634",
+      "code": "801",
+      "temp": 12,
+      "windSpeed": 22,
+      "windDirection": 90,
+      "pressure": 1000,
+      "timestamp": "2025-06-28T12:30:55.013Z",
+      "stationId": "cddfa30a-f9c5-497f-aebc-a9cfe4e89d07"
+    },
+    {
+      "id": "9151d202-2f0e-4897-825b-c751b8116864",
+      "code": "801",
+      "temp": 12,
+      "windSpeed": 111,
+      "windDirection": 110,
+      "pressure": 1222,
+      "timestamp": "2025-06-28T12:40:42.706Z",
+      "stationId": "4ced3155-6def-4c38-adff-e06d950c7f00"
+    },
+    {
+      "id": "3ac01d2a-c74a-4dcd-b884-519fd09b7f12",
+      "code": "801",
+      "temp": 21.9,
+      "windSpeed": 22,
+      "windDirection": 222,
+      "pressure": 1111,
+      "timestamp": "2025-06-28T12:46:17.102Z",
+      "stationId": "6b8d93ab-0be4-4a0a-8b95-a6305d121cd4"
+    },
+    {
+      "id": "4012f4f1-296b-4e75-b660-35c81906f8d6",
+      "code": "801",
+      "temp": 22,
+      "windSpeed": 10.9,
+      "windDirection": 111,
+      "pressure": 1111,
+      "timestamp": "2025-06-28T12:49:38.884Z",
+      "stationId": "39779d46-e26d-4387-b3a7-29fe42f75009"
+    },
+    {
+      "id": "ee65d8f3-0abf-458e-8913-dfbc454eff8b",
+      "code": "800",
+      "temp": 11,
+      "windSpeed": 111,
+      "windDirection": 221,
+      "pressure": 1111,
+      "timestamp": "2025-06-28T12:55:36.155Z",
+      "stationId": "b7263be9-afac-4f64-b0ea-84f6f13fbd5a"
+    },
+    {
+      "id": "ecb40021-84bd-4114-8854-0ba811489abb",
+      "code": "800",
+      "temp": 11,
+      "windSpeed": 111,
+      "windDirection": 221,
+      "pressure": 1111,
+      "timestamp": "2025-06-28T13:03:49.803Z",
+      "stationId": "ac701cf4-f1bf-4576-a845-cf4593daa875"
+    },
+    {
+      "id": "89a3c126-478f-4edc-b54f-4ba7c01d9105",
+      "code": "800",
+      "temp": 22,
+      "windSpeed": 111,
+      "windDirection": 111,
+      "pressure": 1109,
+      "timestamp": "2025-06-28T13:07:34.596Z",
+      "stationId": "707d6459-3253-4ee7-aea2-0301f0ba9d3f"
+    }
+  ]
+}

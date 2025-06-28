@@ -1,54 +1,55 @@
-{{> menu active="dashboard" user=user}}
+{{> menu}}
 
 <section class="section">
   <div class="container">
     <h1 class="title has-text-centered">{{station.name}} - Reports</h1>
 
     {{#if reports.length}}
-      <h2 class="subtitle">Summary</h2>
-      <ul>
-        <li>Min Temp: {{minTemp}}°C</li>
-        <li>Max Temp: {{maxTemp}}°C</li>
-        <li>Min Wind: {{minWind}} km/h</li>
-        <li>Max Wind: {{maxWind}} km/h</li>
-        <li>Min Pressure: {{minPressure}} hPa</li>
-        <li>Max Pressure: {{maxPressure}} hPa</li>
-      </ul>
-
-      <table class="table is-fullwidth is-striped mt-5">
-        <thead>
-          <tr>
-            <th>Code</th>
-            <th>Icon</th>
-            <th>Temperature (°C)</th>
-            <th>Wind Speed (km/h)</th>
-            <th>Wind Direction</th>
-            <th>Pressure (hPa)</th>
-          </tr>
-        </thead>
-        <tbody>
-          {{#each reports}}
-            <tr>
-              <td>{{code}}</td>
-              <td>
-                <img src="https://openweathermap.org/img/wn/{{iconCode}}@2x.png" alt="icon">
-              </td>
-              <td>{{temperature}}</td>
-              <td>{{windSpeed}}</td>
-              <td>{{windDirection}}</td>
-              <td>{{pressure}}</td>
-            </tr>
-          {{/each}}
-        </tbody>
-      </table>
+    <table class="table is-fullwidth is-striped is-hoverable">
+      <thead>
+        <tr>
+          <th>Date/Time</th>
+          <th>Code</th>
+          <th>Temperature (°C)</th>
+          <th>Wind Speed (km/h)</th>
+          <th>Wind Direction (°)</th>
+          <th>Pressure (hPa)</th>
+          <th>Icon</th>
+          <th>Delete</th>
+        </tr>
+      </thead>
+      <tbody>
+        {{#each reports}}
+        <tr>
+          <td>{{timestamp}}</td>
+          <td>{{code}}</td>
+          <td>{{temp}}</td>
+          <td>{{windSpeed}}</td>
+          <td>{{windDirection}}</td>
+          <td>{{pressure}}</td>
+          <td>
+              <img src="{{icon}}" alt="icon" width="50" height="50" />
+          </td>
+          <td>
+            <form action="/station/{{../station.id}}/deletereport/{{id}}" method="POST">
+              <button class="button is-danger is-small" type="submit">
+                <span class="icon is-small">
+                  <i class="fas fa-trash"></i>
+                </span>
+              </button>
+            </form>
+          </td>
+        </tr>
+        {{/each}}
+      </tbody>
+    </table>
     {{else}}
-      <p class="has-text-centered">No reports added yet.</p>
+    <p class="has-text-centered">No reports added yet.</p>
     {{/if}}
 
     <hr>
 
     <h2 class="subtitle">Add New Report</h2>
-
     <form action="/station/{{station.id}}/addreport" method="POST" class="box">
       <div class="field">
         <label class="label">Code</label>
@@ -72,20 +73,9 @@
       </div>
 
       <div class="field">
-        <label class="label">Wind Direction</label>
+        <label class="label">Wind Direction (°)</label>
         <div class="control">
-          <div class="select">
-            <select name="windDirection" required>
-              <option value="N">North</option>
-              <option value="NE">Northeast</option>
-              <option value="E">East</option>
-              <option value="SE">Southeast</option>
-              <option value="S">South</option>
-              <option value="SW">Southwest</option>
-              <option value="W">West</option>
-              <option value="NW">Northwest</option>
-            </select>
-          </div>
+          <input class="input" type="number" name="windDirection" required>
         </div>
       </div>
 
@@ -96,9 +86,9 @@
         </div>
       </div>
 
-      <div class="field is-grouped">
+      <div class="field">
         <div class="control">
-          <button class="button is-primary" type="submit">Submit Report</button>
+          <button class="button is-primary">Submit Report</button>
         </div>
       </div>
     </form>

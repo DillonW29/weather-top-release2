@@ -1,21 +1,41 @@
-import { v4 as uuid} from "uuid";
-import { initStore } from "../utils/store-utils.js";
+import { Low } from "lowdb";
+import { JSONFile } from "lowdb/node";
 
-const db = initStore("reports");
+const db = new Low(new JSONFile("models/db.json"));
+
+async function ensureDbInitialized() {
+  await db.read();
+  if (!db.data) {
+    db.data = { reports: [] };
+  } else if (!db.data.reports) {
+    db.data.reports = [];
+  }
+  return db;
+}
 
 export const reportStore = {
-  reports:[],
   async getReportsByStationId(stationId) {
-    await db.read();
-    return db.data.reports.filter((r) => r.stationId === stationId);
+    const db = await ensureDbInitialized();
+    return db.data.reports.filter((report) => report.stationId === stationId);
   },
 
-  async addReport(stationId,report) {
+  async addReport(stationId, report) {
+    const db = await ensureDbInitialized();
     report.stationId = stationId;
-    report.id = uuid(); 
-    this.reports.push(report);
+    db.data.reports.push(report);
+    await db.write();
   },
-  getReportsByStationId(stationId) {
-    return this.reports.filter((r) => r.stationId === stationId);
+
+  async deleteReport(stationId, reportId) {
+    const db = await ensureDbInitialized();
+    db.data.reports = db.data.reports.filter(
+      (report) => !(report.stationId === stationId && report.id === reportId)
+    );
+    await db.write();
   }
 };
+async function removeReport(reportId) {
+  await db.read();
+  db.data.reports = db.data.reports.filter((r) => r.id !== reportId);
+  await db.write();
+}

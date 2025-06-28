@@ -11,8 +11,26 @@
 
 <ul>
   {{#each stations}}
-    <li>{{name}} ({{latitude}}, {{longitude}})</li>
+  <div class="box">
+    <div class="columns is-vcentered">
+      <div class="column is-6">
+        <h2 class="title is-4">{{name}}</h2>
+        <p>Lat: {{lat}}, Lng: {{lng}}</p>
+      </div>
+      <div class="column is-6 has-text-right">
+        <a href="/station/{{id}}" class="button is-link is-small">View Reports</a>
+
+        {{!-- 🚨 DELETE STATION BUTTON --}}
+        <a href="/dashboard/deletestation/{{id}}" class="button is-danger is-small">
+          <span class="icon is-small">
+            <i class="fas fa-trash"></i>
+          </span>
+          <span>Delete</span>
+        </a>
+      </div>
+    </div>
+  </div>
   {{else}}
-    <li>No stations yet.</li>
+  <li>No stations yet</li>
   {{/each}}
 </ul>

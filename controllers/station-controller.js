@@ -1,12 +1,20 @@
 import { stationStore } from "../models/station-store.js";
 import { reportStore } from "../models/report-store.js";
-import {accountsController} from "../controllers/accounts-controller.js";
+import { accountsController } from "./accounts-controller.js";
 
 export const stationController = {
   async index(request, response) {
+    const stationId = request.params.id;
     const user = accountsController.getCurrentUser(request);
-    const station = await stationStore.getStationById(request.params.id);
-    // 🔽 Add icon codes here
+    const station = await stationStore.getStationById(stationId);
+
+    if (!station) {
+      return response.status(404).send("Station not found");
+    }
+
+    const reports = await reportStore.getReportsByStationId(stationId);
+
+    // ✅ Icon mapping using string keys
     const iconMap = {
       "800": "01d",
       "801": "02d",
@@ -17,42 +25,22 @@ export const stationController = {
       "600": "13d",
       "701": "50d",
     };
-    if (!station) {
-      return response.status(404).send("Station not found");
-    }
-    const reports=reportStore.getReportsByStationId(station.id);
+
+    // ✅ Attach weather icon to each report
     for (const report of reports) {
-      report.iconCode = iconMap[report.code] || "01d"; 
+      const code = report.code?.toString();
+      report.icon = iconMap[code]
+        ? `https://openweathermap.org/img/wn/${iconMap[code]}@2x.png`
+        : "No icon";
     }
-    let minTemp = null, maxTemp = null;
-    let minWind = null, maxWind = null;
-    let minPressure = null, maxPressure = null;
-    for (const report of reports) {
-      const temp = Number(report.temperature);
-      const wind = Number(report.windSpeed);
-      const pressure = Number(report.pressure);
 
-      if (minTemp === null || temp < minTemp) minTemp = temp;
-      if (maxTemp === null || temp > maxTemp) maxTemp = temp;
-
-      if (minWind === null || wind < minWind) minWind = wind;
-      if (maxWind === null || wind > maxWind) maxWind = wind;
-
-      if (minPressure === null || pressure < minPressure) minPressure = pressure;
-      if (maxPressure === null || pressure > maxPressure) maxPressure = pressure;
-    }
     const viewData = {
-      title: "Station",
-      station,
-      reports,
-      user,
-      minTemp,
-      maxTemp,
-      minWind,
-      maxWind,
-      minPressure,
-      maxPressure,
+      title: `${station.name} - Reports`,
+      station: station,
+      reports: reports,
+      user: user,
     };
+
     response.render("station-view", viewData);
   },
 };

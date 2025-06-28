@@ -1,35 +1,40 @@
-import axios from "axios";
 import { stationStore } from "../models/station-store.js";
-import accountsController from "./accounts-controller.js";
+import { accountsController } from "./accounts-controller.js";
+import { v4 as uuid } from "uuid";
 
-const weatherRequestUrl = `https://api.openweathermap.org/data/2.5/weather?q=Tramore,Ireland&units=metric&appid=81e6554e88d12b9a5a80d1740acede2b`
-const apiKey="81e6554e88d12b9a5a80d1740acede2b";
 export const dashboardController = {
   index(request, response) {
-  const user = accountsController.getCurrentUser(request);
-  response.render("index", { user: user });
-  },
-  dashboard(request, response) {
-    const user = accountsController.getCurrentUser(request);
-    if (!user) {
-      return response.redirect("/login");
+    const loggedInUser = accountsController.getCurrentUser(request);
+    if (!loggedInUser) {
+      response.redirect("/login");
+    } else {
+      const stations = stationStore.getUserStations(loggedInUser.id);
+      const viewData = {
+        title: "Your Dashboard",
+        user: loggedInUser,
+        stations: stations,
+      };
+      response.render("dashboard-view", viewData);
     }
-    const stations = stationStore.getUserStations(user.id);
-    response.render("dashboard", {
-      title: "Your Dashboard",
-      user: user,
-      stations: stations,
-      active:"dashboard",
-    });
   },
+
   addStation(request, response) {
-    const user = accountsController.getCurrentUser(request);
+    const loggedInUser = accountsController.getCurrentUser(request);
     const newStation = {
+      id: uuid(),
+      userid: loggedInUser.id,
       name: request.body.name,
-      latitude: request.body.latitude,
-      longitude: request.body.longitude
+      lat: request.body.lat,
+      lng: request.body.lng,
+      reports: [],
     };
-    stationStore.addStation(user.id, newStation);
+    stationStore.addStation(newStation);
     response.redirect("/dashboard");
-  }
+  },
+
+  deleteStation(request, response) {
+    const stationId = request.params.id;
+    stationStore.removeStation(stationId);
+    response.redirect("/dashboard");
+  },
 };

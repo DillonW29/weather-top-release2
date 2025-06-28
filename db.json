@@ -1,0 +1,84 @@
+{
+  "users": [],
+  "stations": [
+    {
+      "id": "d1bd484d-dc2b-4b8f-bde5-3a49cc9719ff",
+      "userid": "4c7055ad-0a07-422b-928e-2992690efe84",
+      "name": "Cork",
+      "reports": []
+    },
+    {
+      "id": "7a434843-5909-4d60-87c8-fc3551be6713",
+      "userid": "320c9755-4840-42bb-98be-3d8596f78c61",
+      "name": "Cork",
+      "reports": []
+    },
+    {
+      "id": "ce28b8e3-9888-4ff9-a6af-19ab73f9c846",
+      "userid": "856f0b4b-bcf0-4ab7-9829-d54ccfe292a3",
+      "name": "Cork",
+      "reports": []
+    },
+    {
+      "id": "5cb2bb84-79be-4bf9-b787-bb120a61df6b",
+      "userid": "61f0c8fc-8ebe-4916-99d8-e9482f0d75f5",
+      "name": "Cork",
+      "reports": []
+    },
+    {
+      "id": "0c8e236b-bbf1-4da7-afe2-282a31d4c995",
+      "userid": "17d5937b-2ac5-4a1e-9c0a-133b755966ff",
+      "name": "Cork",
+      "reports": []
+    },
+    {
+      "id": "5541784a-fd52-4dbc-b4f0-45244e2091cb",
+      "userid": "2a5e70bd-1154-4399-abf4-b8a42ad3860f",
+      "name": "Cork",
+      "reports": []
+    },
+    {
+      "id": "cddfa30a-f9c5-497f-aebc-a9cfe4e89d07",
+      "userid": "003fe569-06cb-4824-834f-23ef65b43ffd",
+      "name": "Dublin",
+      "reports": []
+    },
+    {
+      "id": "4ced3155-6def-4c38-adff-e06d950c7f00",
+      "userid": "d821bbbb-3b0f-4022-ab2e-e509dafae61e",
+      "name": "Cork",
+      "reports": []
+    },
+    {
+      "id": "6b8d93ab-0be4-4a0a-8b95-a6305d121cd4",
+      "userid": "56841552-e0d0-4f27-8f46-e5ccc4efe0af",
+      "name": "Cork",
+      "reports": []
+    },
+    {
+      "id": "39779d46-e26d-4387-b3a7-29fe42f75009",
+      "userid": "8f74ba32-167a-409a-997d-76953cbdebbe",
+      "name": "Cork",
+      "reports": []
+    },
+    {
+      "id": "b7263be9-afac-4f64-b0ea-84f6f13fbd5a",
+      "userid": "c8917211-065d-4a9e-b5a2-bd4c57a173bb",
+      "name": "Cork",
+      "reports": []
+    },
+    {
+      "id": "ac701cf4-f1bf-4576-a845-cf4593daa875",
+      "userid": "ee4078ed-3c40-4e41-917f-a188351fbe70",
+      "name": "Cork",
+      "reports": []
+    },
+    {
+      "id": "707d6459-3253-4ee7-aea2-0301f0ba9d3f",
+      "userid": "2512a37d-982f-44c9-a166-51b6c2e57e4b",
+      "name": "Cork",
+      "reports": []
+    }
+  ],
+  "reports": []
+}
