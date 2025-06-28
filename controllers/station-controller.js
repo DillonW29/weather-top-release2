@@ -33,7 +33,7 @@ export const stationController = {
         ? `https://openweathermap.org/img/wn/${iconMap[code]}@2x.png`
         : "No icon";
     }
-
+     console.log("Station data:", station); // ✅ ADD THIS HERE
     const viewData = {
       title: `${station.name} - Reports`,
       station: station,
