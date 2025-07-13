@@ -4,6 +4,7 @@
   <div class="container">
     <h1 class="title has-text-centered">{{station.name}} - Reports</h1>
     <p>Lat: {{station.lat}}, Lng: {{station.lng}}</p>
+
     {{#if reports.length}}
     <table class="table is-fullwidth is-striped is-hoverable">
       <thead>
@@ -28,14 +29,16 @@
           <td>{{windDirection}}</td>
           <td>{{pressure}}</td>
           <td>
+            {{#if icon}}
               <img src="{{icon}}" alt="icon" width="50" height="50" />
+            {{else}}
+              No icon
+            {{/if}}
           </td>
           <td>
             <form action="/station/{{../station.id}}/deletereport/{{id}}" method="POST">
               <button class="button is-danger is-small" type="submit">
-                <span class="icon is-small">
-                  <i class="fas fa-trash"></i>
-                </span>
+                <span class="icon is-small"><i class="fas fa-trash"></i></span>
               </button>
             </form>
           </td>
@@ -57,40 +60,113 @@
           <input class="input" type="text" name="code" placeholder="e.g. 800" required>
         </div>
       </div>
-
       <div class="field">
         <label class="label">Temperature (°C)</label>
         <div class="control">
           <input class="input" type="number" name="temp" step="0.1" required>
         </div>
       </div>
-
       <div class="field">
         <label class="label">Wind Speed (km/h)</label>
         <div class="control">
           <input class="input" type="number" name="windSpeed" step="0.1" required>
         </div>
       </div>
-
       <div class="field">
         <label class="label">Wind Direction (°)</label>
         <div class="control">
           <input class="input" type="number" name="windDirection" required>
         </div>
       </div>
-
       <div class="field">
         <label class="label">Pressure (hPa)</label>
         <div class="control">
           <input class="input" type="number" name="pressure" required>
         </div>
       </div>
-
       <div class="field">
         <div class="control">
           <button class="button is-primary">Submit Report</button>
         </div>
       </div>
     </form>
+
+    <form action="/station/{{station.id}}/autoreport" method="POST">
+      <button class="button is-danger mt-2" type="submit">Auto Generate Reading</button>
+    </form>
+
+    <hr>
+
+    <!-- Temperature Trend -->
+    <h2 class="subtitle mt-5">Temperature Trend</h2>
+    <canvas id="tempChart" height="100"></canvas>
+
+    <!-- Map -->
+    <div id="map" style="height: 300px; margin-top: 3em;"></div>
+
+    <!-- Scripts -->
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"/>
+
+    <script>
+      document.addEventListener("DOMContentLoaded", function () {
+        // Map
+        const lat = parseFloat("{{station.lat}}");
+        const lng = parseFloat("{{station.lng}}");
+
+        if (!isNaN(lat) && !isNaN(lng)) {
+          if (window._mapInstance) {
+            window._mapInstance.remove();
+          }
+
+          const map = L.map("map").setView([lat, lng], 12);
+          window._mapInstance = map;
+
+          L.tileLayer("https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png", {
+            attribution: '&copy; OpenStreetMap contributors'
+          }).addTo(map);
+
+          L.marker([lat, lng]).addTo(map).bindPopup("{{station.name}}").openPopup();
+        } else {
+          document.getElementById("map").innerHTML = "No location data available.";
+        }
+
+        // Chart data extraction
+        const labels = [
+          {{#each reports}}"{{timestamp}}"{{#unless @last}},{{/unless}}{{/each}}
+        ];
+        const temps = [
+          {{#each reports}}{{temp}}{{#unless @last}},{{/unless}}{{/each}}
+        ];
+
+        // Chart
+        const ctx = document.getElementById("tempChart");
+        if (ctx && labels.length && temps.length) {
+          new Chart(ctx, {
+            type: "line",
+            data: {
+              labels: labels,
+              datasets: [{
+                label: "Temperature (°C)",
+                data: temps,
+                borderColor: "rgba(75,192,192,1)",
+                backgroundColor: "rgba(75,192,192,0.2)",
+                fill: false,
+                tension: 0.1
+              }]
+            },
+            options: {
+              responsive: true,
+              scales: {
+                y: {
+                  beginAtZero: false
+                }
+              }
+            }
+          });
+        }
+      });
+    </script>
   </div>
 </section>

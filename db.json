@@ -110,6 +110,70 @@
       "lat": "54",
       "lng": "-7",
       "reports": []
+    },
+    {
+      "id": "9bd2e3e1-343d-447e-81e7-a1034c5ac3ed",
+      "userid": "68683472-de19-43b8-969a-7b410b8267a9",
+      "name": "Cork",
+      "lat": "54",
+      "lng": "-7",
+      "reports": []
+    },
+    {
+      "id": "ced5d264-0285-4063-9ffe-785f53548bf5",
+      "userid": "aec3205e-da5e-4f05-9247-733bac8d866c",
+      "name": "Dublin",
+      "lat": "67",
+      "lng": "10",
+      "reports": []
+    },
+    {
+      "id": "ffdb13d6-6e39-47df-8a51-4b8ec7e1188f",
+      "userid": "920cdf2c-4087-4cbf-b15a-7a3e3eb0e5f5",
+      "name": "Dublin",
+      "lat": "67",
+      "lng": "10",
+      "reports": []
+    },
+    {
+      "id": "5958270c-4dde-4527-9d2d-01c5d543e5a8",
+      "userid": "72d6026e-fb24-4330-8a0a-d62e262b5e2d",
+      "name": "Cork",
+      "lat": "54",
+      "lng": "-7",
+      "reports": []
+    },
+    {
+      "id": "7f298c19-5ca1-4c10-9410-6db51647fa30",
+      "userid": "7fe6a452-85b1-438a-8b65-7f1dcadf2fc7",
+      "name": "Cork",
+      "lat": "54",
+      "lng": "-7",
+      "reports": []
+    },
+    {
+      "id": "d4a8bf0d-06eb-4867-b7d9-4e61c767555e",
+      "userid": "4d26b8af-83bc-43de-ba9b-6f65b9fb74f2",
+      "name": "Cork",
+      "lat": "54",
+      "lng": "-7",
+      "reports": []
+    },
+    {
+      "id": "dfb71bdb-158f-4537-856d-12b951711214",
+      "userid": "c357e5e5-490b-446c-bdf9-7cc436a51d91",
+      "name": "Cork",
+      "lat": "54",
+      "lng": "10",
+      "reports": []
+    },
+    {
+      "id": "1f1a97a2-c58a-4845-86fe-63f06c06ca1b",
+      "userid": "2ba26350-d5c8-4e7f-bbcc-db5f590f951f",
+      "name": "Dublin",
+      "lat": "54",
+      "lng": "10",
+      "reports": []
     }
   ],
   "reports": []

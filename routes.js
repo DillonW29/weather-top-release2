@@ -24,3 +24,4 @@ router.get("/dashboard/deletestation/:id", dashboardController.deleteStation);
 router.get("/station/:id", stationController.index);
 router.post("/station/:id/addreport", reportController.addReport);
 router.post("/station/:stationId/deletereport/:reportId", reportController.deleteReport);
+router.post("/station/:id/autoreport", reportController.autoGenerateReport);
