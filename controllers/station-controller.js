@@ -14,7 +14,7 @@ export const stationController = {
 
     const reports = await reportStore.getReportsByStationId(stationId);
 
-    // ✅ Icon mapping using string keys
+    //  Icon mapping using string keys
     const iconMap = {
       "800": "01d",
       "801": "02d",
@@ -26,14 +26,14 @@ export const stationController = {
       "701": "50d",
     };
 
-    // ✅ Attach weather icon to each report
+    // Attach weather icon to each report
     for (const report of reports) {
       const code = report.code?.toString();
       report.icon = iconMap[code]
         ? `https://openweathermap.org/img/wn/${iconMap[code]}@2x.png`
         : "No icon";
     }
-     console.log("Station data:", station); // ✅ ADD THIS HERE
+     console.log("Station data:", station); 
     const viewData = {
       title: `${station.name} - Reports`,
       station: station,
